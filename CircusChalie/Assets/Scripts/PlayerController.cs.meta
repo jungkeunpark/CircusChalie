@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ecfc4ece3115f7843b5533e9eaf4dff0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - deathClip: {instanceID: 0}
+  - backstep: {fileID: 8300000, guid: 616b48cf8ed7e854da6a4643d0464e98, type: 3}
+  - player: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

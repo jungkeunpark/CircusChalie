@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ground
+  - Death
+  - Score
   layers:
   - Default
   - TransparentFX
@@ -40,4 +43,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 334355135
+    locked: 0
+  - name: Ground
+    uniqueID: 3840532421
+    locked: 0
+  - name: leftFire
+    uniqueID: 3273426923
+    locked: 0
+  - name: Player
+    uniqueID: 2111084923
+    locked: 0
+  - name: rightFire
+    uniqueID: 2132436649
+    locked: 0
+  - name: camera
+    uniqueID: 2923882573
     locked: 0
