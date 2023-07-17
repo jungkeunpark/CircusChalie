@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public bool GameClear = false;
     public bool isGameOver = false;
     public TMP_Text scoreText;// Text mesh pro 컴포넌트 쓴 경우
     public GameObject gameoverUi;
@@ -43,7 +44,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isGameOver == true && Input.GetButtonDown("Jump"))
+        if (isGameOver == true && Input.GetKey(KeyCode.Z))
         {
             GFunc.LoadScene(GFunc.GetActiveSceneName());
         }
@@ -70,13 +71,14 @@ public class GameManager : MonoBehaviour
 
     public void onPlayerDead()
     {
-        if(isGameOver == true)
+        if (isGameOver == false)
         {
             gameoverUi.SetActive(true);
         }
-        else if(isGameOver == false)
+        else if (isGameOver == true)
         {
             gameoverUi.SetActive(false);
         }
     }
 }
+

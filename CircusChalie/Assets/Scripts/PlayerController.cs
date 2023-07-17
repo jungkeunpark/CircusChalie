@@ -6,15 +6,17 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public AudioClip deathClip;
+    public AudioClip ClearClip;
+    public AudioClip JumpClip;
     public AudioClip backstep;
     public float jumpForce = 300f;
-    public GameObject player = default;
 
     private int jumpCount = 0;
     private bool isGrounded = false;
     private bool isLeft = false;
     private bool isRight = false;
     private bool isLife = false;
+    private bool istrue = true;
 
     private bool isDead = false;
     public float speed = default;
@@ -45,23 +47,9 @@ public class PlayerController : MonoBehaviour
     {
 
 
-
-        if (isDead) { return; }
-
-
-        //if (Input.GetKeyDown(KeyCode.Z) && jumpCount < 2)
-        //{
-        //    jumpCount++;
-        //    playerRigid.velocity = Vector2.zero;
-        //    playerRigid.AddForce(new Vector2(0, jumpForce));
-        //    playerAudio.Play();
-        //}
-        //else if (Input.GetKeyDown(KeyCode.Z) && 0 < playerRigid.velocity.y)
-        //{
-        //    playerRigid.velocity = playerRigid.velocity * 0.5f;
-        //}
-
         Jump();
+        Backstep();
+        if (isDead) { return; }       
         animator.SetBool("Ground", isGrounded);
         animator.SetBool("Left", isLeft);
         animator.SetBool("Right", isRight);
@@ -90,6 +78,7 @@ public class PlayerController : MonoBehaviour
             jumpCount++;
             playerRigid.velocity = Vector2.zero;
             playerRigid.AddForce(new Vector2(0, jumpForce));
+            playerAudio.clip = JumpClip;
             playerAudio.Play();
         }
         else if (Input.GetKeyDown(KeyCode.Z) && 0 < playerRigid.velocity.y)
@@ -99,24 +88,16 @@ public class PlayerController : MonoBehaviour
     }
     public void Backstep()
     {
-        
+        if( Input.GetKeyDown(KeyCode.LeftArrow))
+        {
             animator.SetTrigger("Left");
             playerAudio.clip = backstep;
             playerAudio.Play();
+
+        }
         
     }
 
-
-    private void Die()
-    {
-        animator.SetTrigger("Die");
-        playerAudio.clip = deathClip;
-        playerAudio.Play();
-
-        playerRigid.velocity = Vector2.zero;
-        isDead = true;
-        GameManager.instance.onPlayerDead();
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -134,10 +115,7 @@ public class PlayerController : MonoBehaviour
             else if (Life3.GetBool("Life") == false && Life2.GetBool("Life") == false && Life1.GetBool("Life") == true)
             {
                 Life1.SetBool("Life", isLife);
-            }
-            else if (Life3.GetBool("Life") == false && Life2.GetBool("Life") == false && Life1.GetBool("Life") == false)
-            {
-                animator.SetTrigger("Die");
+                animator.SetBool("Die", istrue);
                 playerAudio.clip = deathClip;
                 playerAudio.Play();
                 playerRigid.velocity = Vector2.zero;
@@ -150,6 +128,15 @@ public class PlayerController : MonoBehaviour
 
             GameManager.instance.AddScore(1);
             collision.gameObject.SetActive(false);
+        }
+
+        if(collision.tag.Equals("Finish"))
+        {
+            animator.SetBool("Clear", istrue);
+            playerAudio.clip = ClearClip;
+            playerAudio.Play();
+            playerRigid.velocity = Vector2.zero;
+            
         }
     }
 

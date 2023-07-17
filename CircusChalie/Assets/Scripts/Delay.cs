@@ -17,7 +17,6 @@ public class Delay : MonoBehaviour
 
     private IEnumerator PassedCoolTime(float CoolTimeDelay)
     {
-        float cooltimePercent = 1f / 1000f;
 
        
             yield return new WaitForSeconds(CoolTimeDelay);

@@ -15,7 +15,6 @@ public class PlayerPetController : MonoBehaviour
     private bool petisLeft = false;
     private bool petisRight = false;
 
-    private bool isDead = false;
     public float speed = default;
     public float petmovespeed = 5f;
 
